@@ -19,12 +19,12 @@ const chainInfos = (
         OSMOSIS_RPC_OVERWRITE ??
         (IS_TESTNET
           ? "https://rpc.testnet.osmosis.zone/"
-          : "https://rpc-osmosis.keplr.app/"),
+          : "https://rpc.osl.zone/"),
       rest:
         OSMOSIS_REST_OVERWRITE ??
         (IS_TESTNET
           ? "https://lcd.testnet.osmosis.zone/"
-          : "https://lcd-osmosis.keplr.app/"),
+          : "https://api.osl.zone/"),
       chainId:
         OSMOSIS_CHAIN_ID_OVERWRITE ??
         (IS_TESTNET ? "osmo-test-4" : "osmosis-1"),
