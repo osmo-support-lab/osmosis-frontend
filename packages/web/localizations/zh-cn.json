@@ -143,7 +143,7 @@
     "bonded": "绑定",
     "showDetails": "显示详情",
     "collapseDetails": "收起详情",
-    "sharesAvailableIn": "可用份额",
+    "sharesAvailableIn": "可用",
     "unbonding": "解绑期",
     "superfluidEarnMore": "赚取 {rate} 更多. 去超流质押",
     "incentives": "奖励",
@@ -272,7 +272,6 @@
       "search": "搜索",
       "title": "所有资产",
       "hideZero": "隐藏0余额",
-      "buyOsmo": "买入",
       "preTransfer": {
         "deposit": "存入",
         "withdraw": "提币",
@@ -395,5 +394,8 @@
   "Amount is empty": "数量为空",
   "Insufficient amount": "数量不足",
   "Amount is zero": "数量为零",
-  "Minimum of 2 assets required": "最少需要两种资产"
+  "Minimum of 2 assets required": "最少需要两种资产",
+  "stablecoinTypes": {
+    "collateralized": "抵押的"
+  }
 }
