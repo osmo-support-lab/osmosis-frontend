@@ -2477,6 +2477,34 @@ const chainInfos = (
       explorerUrlToTx: "https://www.mintscan.io/onomy-protocol/txs/{txHash}",
     },
     {
+      rpc: "https://rpc.planq.network/",
+      rest: "https://rest.planq.network/",
+      chainId: "planq_7070-2",
+      chainName: "Planq",
+      bip44: {
+        coinType: 60,
+      },
+      bech32Config: Bech32Address.defaultBech32Config("plq"),
+      currencies: [
+        {
+          coinDenom: "PLANQ",
+          coinMinimalDenom: "aplanq",
+          coinDecimals: 18,
+          coinGeckoId: "pool:aplanq",
+          coinImageUrl: "/tokens/planq.svg",
+          isStakeCurrency: true,
+          isFeeCurrency: true,
+          gasPriceStep: {
+            low: 20000000000,
+            average: 25000000000,
+            high: 40000000000,
+          },
+        },
+      ],
+      features: ["ibc-transfer", "ibc-go", "eth-address-gen", "eth-key-sign"],
+      explorerUrlToTx: "https://ping.pub/planq/tx/{txHash}",
+    },
+    {
       rpc: "https://dys-tm.dysonprotocol.com:443",
       rest: "https://dys-api.dysonprotocol.com:443",
       chainId: "dyson-mainnet-01",
@@ -2504,6 +2532,34 @@ const chainInfos = (
       features: ["ibc-transfer", "ibc-go"],
       explorerUrlToTx:
         "https://explorer.dys.dysonprotocol.com/dyson/tx/{txHash}",
+    },
+    {
+      rpc: "https://testnet-rpc.marsprotocol.io/",
+      rest: "https://testnet-rest.marsprotocol.io/",
+      chainId: "ares-1",
+      chainName: "Mars Hub Testnet",
+      bip44: {
+        coinType: 118,
+      },
+      bech32Config: Bech32Address.defaultBech32Config("mars"),
+      currencies: [
+        {
+          coinDenom: "MARS",
+          coinMinimalDenom: "umars",
+          coinDecimals: 6,
+          coinImageUrl: "/tokens/mars.svg",
+          isStakeCurrency: true,
+          isFeeCurrency: true,
+          gasPriceStep: {
+            low: 0,
+            average: 0,
+            high: 0.025,
+          },
+        },
+      ],
+      features: ["ibc-transfer", "ibc-go"],
+      explorerUrlToTx:
+        "https://testnet-explorer.marsprotocol.io/transactions/{txHash}",
     },
   ] as SimplifiedChainInfo[]
 ).map(createKeplrChainInfos);
@@ -2578,7 +2634,7 @@ chainInfos.push({
       coinDecimals: 18,
       // coinGeckoId: "weth",
       coinGeckoId: "pool:weth-wei",
-      coinImageUrl: "/tokens/weth.svg",
+      coinImageUrl: "/tokens/eth.png",
     },
     {
       coinDenom: "WBTC",
@@ -2662,7 +2718,7 @@ chainInfos.push({
     },
     {
       coinDenom: "wGLMR",
-      coinMinimalDenom: "wglmr-wei",
+      coinMinimalDenom: IS_TESTNET ? "wdev-wei" : "wglmr-wei",
       coinDecimals: 18,
       coinGeckoId: "wrapped-moonbeam",
       coinImageUrl: "/tokens/glmr.svg",
@@ -2679,14 +2735,14 @@ chainInfos.push({
       coinMinimalDenom: "wbnb-wei",
       coinDecimals: 18,
       coinGeckoId: "wbnb",
-      coinImageUrl: "/tokens/wbnb.svg",
+      coinImageUrl: "/tokens/bnb.svg",
     },
     {
       coinDenom: "wMATIC",
       coinMinimalDenom: "wmatic-wei",
       coinDecimals: 18,
       coinGeckoId: "wmatic",
-      coinImageUrl: "/tokens/wmatic.svg",
+      coinImageUrl: "/tokens/matic.png",
     },
     {
       coinDenom: "BUSD",
@@ -2696,11 +2752,11 @@ chainInfos.push({
       coinImageUrl: "/tokens/busd.png",
     },
     {
-      coinDenom: "WAVAX",
+      coinDenom: "wAVAX",
       coinMinimalDenom: "wavax-wei",
       coinDecimals: 18,
       coinGeckoId: "avalanche-2",
-      coinImageUrl: "/tokens/wavax.svg",
+      coinImageUrl: "/tokens/avax.svg",
     },
   ],
   feeCurrencies: [
@@ -2712,7 +2768,11 @@ chainInfos.push({
       coinImageUrl: "/tokens/axl.svg",
     },
   ],
-  gasPriceStep: {
+  gasPriceStep: IS_TESTNET ? {
+    low: 0.007,
+    average: 0.125,
+    high:0.2,
+  } : {
     low: 0.00005,
     average: 0.00007,
     high: 0.00009,
