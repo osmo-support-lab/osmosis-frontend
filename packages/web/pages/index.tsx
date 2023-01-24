@@ -19,7 +19,7 @@ const Home: NextPage = observer(function () {
   const poolsPassed = useRef<Map<string, boolean>>(new Map());
   const allPools = queryPools.getAllPools();
   // Pools should be memoized before passing to trade in config
-  const pools = useMemo(
+ const pools = useMemo(
     () =>
       allPools
         .filter((pool) => {
@@ -31,12 +31,6 @@ const Home: NextPage = observer(function () {
           if (passed) {
             return true;
           }
-
-          // https://github.com/osmosis-labs/osmosis-frontend/issues/843
-          if (pool.id === "800") {
-            return false;
-          }
-
           // There is currently no good way to pick a pool that is worthwhile.
           // For now, based on the mainnet, only those pools with assets above a certain value are calculated for swap.
 
@@ -50,77 +44,113 @@ const Home: NextPage = observer(function () {
               return false;
             }
 
-            // Only pools with at least 1000 osmo are dealt with.
+            // Only pools with at least 10 osmo are dealt with.
             if (asset.amount.currency.coinMinimalDenom === "uosmo") {
-              if (asset.amount.toDec().gt(new Dec(1000))) {
-                hasEnoughAssets = true;
-                break;
-              }
-            }
-
-            // Only pools with at least 10 ion are dealt with.
-            if (asset.amount.currency.coinMinimalDenom === "uion") {
               if (asset.amount.toDec().gt(new Dec(10))) {
                 hasEnoughAssets = true;
                 break;
               }
             }
 
-            // Only pools with at least 1000 atom are dealt with.
+            // Only pools with at least 1 ion are dealt with.
+            if (asset.amount.currency.coinMinimalDenom === "uion") {
+              if (asset.amount.toDec().gt(new Dec(1))) {
+                hasEnoughAssets = true;
+                break;
+              }
+            }
+
+            // Only pools with at least 10 atom are dealt with.
             if (
               "originChainId" in asset.amount.currency &&
               asset.amount.currency.coinMinimalDenom ===
                 "ibc/27394FB092D2ECCD56123C74F36E4C1F926001CEADA9CA97EA622B25F41E5EB2"
             ) {
-              if (asset.amount.toDec().gt(new Dec(1000))) {
+              if (asset.amount.toDec().gt(new Dec(10))) {
                 hasEnoughAssets = true;
                 break;
               }
             }
 
-            // only pools with at least 10,000 USDC
+            // only pools with at least 10 USDC.axl
             if (
               "originChainId" in asset.amount.currency &&
               asset.amount.currency.coinMinimalDenom ===
                 "ibc/D189335C6E4A68B513C10AB227BF1C1D38C746766278BA3EEB4FB14124F1D858"
             ) {
-              if (asset.amount.toDec().gt(new Dec(10_000))) {
+              if (asset.amount.toDec().gt(new Dec(10))) {
                 hasEnoughAssets = true;
                 break;
               }
             }
 
-            // only pools with at least 10,000 DAI
+            // only pools with 10 USDC.grv
+            if (
+              "originChainId" in asset.amount.currency &&
+              asset.amount.currency.coinMinimalDenom ===
+                "ibc/9F9B07EF9AD291167CF5700628145DE1DEB777C2CFC7907553B24446515F6D0E"
+            ) {
+              if (asset.amount.toDec().gt(new Dec(10))) {
+                hasEnoughAssets = true;
+                break;
+              }
+            }
+
+            // only pools with at least 10 DAI.axl
             if (
               "originChainId" in asset.amount.currency &&
               asset.amount.currency.coinMinimalDenom ===
                 "ibc/0CD3A0285E1341859B5E86B6AB7682F023D03E97607CCC1DC95706411D866DF7"
             ) {
-              if (asset.amount.toDec().gt(new Dec(10_000))) {
+              if (asset.amount.toDec().gt(new Dec(10))) {
                 hasEnoughAssets = true;
                 break;
               }
             }
 
-            // only pools with at least 1,000,000 STARS
+            // only pools with at least 10 DAI.grv
+            if (
+              "originChainId" in asset.amount.currency &&
+              asset.amount.currency.coinMinimalDenom ===
+                "ibc/F292A17CF920E3462C816CBE6B042E779F676CAB59096904C4C1C966413E3DF5"
+            ) {
+              if (asset.amount.toDec().gt(new Dec(10))) {
+                hasEnoughAssets = true;
+                break;
+              }
+            }
+
+            // only pools with at least 10 USDT.grv
+            if (
+              "originChainId" in asset.amount.currency &&
+              asset.amount.currency.coinMinimalDenom ===
+                "ibc/71B441E27F1BBB44DD0891BCD370C2794D404D60A4FFE5AECCD9B1E28BC89805"
+            ) {
+              if (asset.amount.toDec().gt(new Dec(10))) {
+                hasEnoughAssets = true;
+                break;
+              }
+            }
+
+            // only pools with at least 100 STARS
             if (
               "originChainId" in asset.amount.currency &&
               asset.amount.currency.coinMinimalDenom ===
                 "ibc/987C17B11ABC2B20019178ACE62929FE9840202CE79498E29FE8E5CB02B7C0A4"
             ) {
-              if (asset.amount.toDec().gt(new Dec(1_000))) {
+              if (asset.amount.toDec().gt(new Dec(100))) {
                 hasEnoughAssets = true;
                 break;
               }
             }
 
-            // only pools with at least 10,000 JUNO
+            // only pools with at least 10 JUNO
             if (
               "originChainId" in asset.amount.currency &&
               asset.amount.currency.coinMinimalDenom ===
                 "ibc/46B44899322F3CD854D2D46DEEF881958467CDD4B3B10086DA49296BBED94BED"
             ) {
-              if (asset.amount.toDec().gt(new Dec(10_000))) {
+              if (asset.amount.toDec().gt(new Dec(10))) {
                 hasEnoughAssets = true;
                 break;
               }
