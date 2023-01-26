@@ -67,7 +67,7 @@ const chainInfos = (
             ]
           : []),
       ],
-      features: ["ibc-transfer", "ibc-go"],
+      features: ["ibc-transfer", "ibc-go", "cosmwasm", "wasmd_0.24+"],
       explorerUrlToTx:
         OSMOSIS_EXPLORER_URL_OVERWRITE ??
         (IS_TESTNET
@@ -2561,6 +2561,35 @@ const chainInfos = (
       explorerUrlToTx:
         "https://testnet-explorer.marsprotocol.io/transactions/{txHash}",
     },
+    {
+      rpc: "https://canto-rpc.polkachu.com",
+      rest: "https://canto-api.polkachu.com",
+      chainId: "canto_7700-1",
+      chainName: "Canto",
+      bip44: {
+        coinType: 60,
+      },
+      bech32Config: Bech32Address.defaultBech32Config("canto"),
+      currencies: [
+        {
+          coinDenom: "CANTO",
+          coinMinimalDenom: "acanto",
+          coinDecimals: 18,
+          coinImageUrl: "/tokens/canto.png",
+          coinGeckoId: "pool:acanto",
+          isStakeCurrency: true,
+          isFeeCurrency: true,
+          gasPriceStep: {
+            low: 125000000000,
+            average: 250000000000,
+            high: 375000000000,
+          },
+        },
+      ],
+      features: ["ibc-transfer", "ibc-go", "eth-address-gen", "eth-key-sign"],
+      explorerUrlToTx:
+        "https://cosmos.explorer.canto.io/transactions/{txHash}",
+    },
   ] as SimplifiedChainInfo[]
 ).map(createKeplrChainInfos);
 
@@ -2757,6 +2786,14 @@ chainInfos.push({
       coinDecimals: 18,
       coinGeckoId: "avalanche-2",
       coinImageUrl: "/tokens/avax.svg",
+    },
+    {
+      coinDenom: "wFTM",
+      coinMinimalDenom: "wftm-wei",
+      coinDecimals: 18,
+      //coinGeckoId: "fantom",
+      coinGeckoId: "pool:wftm-wei",
+      coinImageUrl: "/tokens/ftm.png",
     },
   ],
   feeCurrencies: [

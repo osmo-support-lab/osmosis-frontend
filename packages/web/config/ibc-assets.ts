@@ -64,7 +64,7 @@ export const IBCAssetInfos: (IBCAsset & {
     sourceChannelId: "channel-1946",
     destChannelId: "channel-135",
     coinMinimalDenom: "wbnb-wei",
-    sourceChainNameOverride: "Binance Smart Chain",
+    sourceChainNameOverride: "Binance Smart Chain Testnet",
     isVerified: true,
     originBridgeInfo: {
       bridge: "axelar" as const,
@@ -139,6 +139,26 @@ export const IBCAssetInfos: (IBCAsset & {
     destChannelId: "channel-2",
     coinMinimalDenom: "umars",
     isVerified: true,
+  },
+  {
+    counterpartyChainId: "axelar-testnet-lisbon-3",
+    sourceChannelId: "channel-1946",
+    destChannelId: "channel-135",
+    coinMinimalDenom: "wftm-wei",
+    sourceChainNameOverride: "Fantom Testnet",
+    isVerified: true,
+    originBridgeInfo: {
+      bridge: "axelar" as const,
+      wallets: ["metamask" as const],
+      method: "deposit-address" as const,
+      sourceChains: [AxelarSourceChainConfigs.wftm.fantom],
+      wrapAssetConfig: {
+        url: "https://www.spiritswap.finance/swap/FTM/WFTM",
+        fromDenom: "FTM",
+        toDenom: "WFTM",
+        platformName: "SpiritSwap",
+      },
+    },
   },
 ] : [
   {
@@ -432,6 +452,26 @@ export const IBCAssetInfos: (IBCAsset & {
     counterpartyChainId: "axelar-dojo-1",
     sourceChannelId: "channel-208",
     destChannelId: "channel-3",
+    coinMinimalDenom: "wftm-wei",
+    sourceChainNameOverride: "Fantom",
+    isVerified: false,
+    originBridgeInfo: {
+      bridge: "axelar" as const,
+      wallets: ["metamask" as const],
+      method: "deposit-address" as const,
+      sourceChains: [AxelarSourceChainConfigs.wftm.fantom],
+      wrapAssetConfig: {
+        url: "https://www.spiritswap.finance/swap/FTM/WFTM",
+        fromDenom: "FTM",
+        toDenom: "WFTM",
+        platformName: "SpiritSwap",
+      },
+    },
+  },
+  {
+    counterpartyChainId: "axelar-dojo-1",
+    sourceChannelId: "channel-208",
+    destChannelId: "channel-3",
     coinMinimalDenom: "mkr-wei",
     sourceChainNameOverride: "Ethereum",
     isVerified: true,
@@ -552,6 +592,13 @@ export const IBCAssetInfos: (IBCAsset & {
     destChannelId: "channel-0",
     coinMinimalDenom: "ujuno",
     isVerified: true,
+  },
+  {
+    counterpartyChainId: "canto_7700-1",
+    sourceChannelId: "channel-550",
+    destChannelId: "channel-5",
+    coinMinimalDenom: "acanto",
+    isVerified: false,
   },
   {
     counterpartyChainId: "panacea-3",
