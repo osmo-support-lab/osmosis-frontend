@@ -1,4 +1,4 @@
-### Alternate [Osmosis](https://github.com/osmosis-labs/osmosis) Front End, hosted by the [Osmosis Support Lab](https://support.osmosis.zone)
+### Alternate [Osmosis](https://github.com/osmosis-labs/osmosis) Front End, hosted by the [Osmosis Support LAB](https://support.osmosis.zone)
 
 <pre>
 stable: https://frontier.osl.zone
