@@ -217,7 +217,7 @@ const Home: NextPage = observer(function () {
           pools={pools}
         />
       </div>
-      <script type="text/javascript" src="/_next/static/chunks/chatwidget.js"></script>
+      <script async type="text/javascript" src="/script/widget.js"></script>
     </main>
   );
 });
