@@ -2545,10 +2545,18 @@ const chainInfos = (
         "https://explorer.dys.dysonprotocol.com/dyson/tx/{txHash}",
     },
     {
-      rpc: "https://testnet-rpc.marsprotocol.io/",
-      rest: "https://testnet-rest.marsprotocol.io/",
-      chainId: "ares-1",
-      chainName: "Mars Hub Testnet",
+      rpc: IS_TESTNET
+        ? "https://testnet-rpc.marsprotocol.io/"
+        : "https://rpc.marsprotocol.io/",
+      rest: IS_TESTNET
+        ? "https://testnet-rest.marsprotocol.io/"
+        : "https://rest.marsprotocol.io/",
+      chainId: IS_TESTNET
+        ? "ares-1"
+        : "mars-1",
+      chainName: IS_TESTNET
+        ? "Mars Hub Testnet"
+        : "Mars Hub",
       bip44: {
         coinType: 118,
       },
@@ -2558,23 +2566,29 @@ const chainInfos = (
           coinDenom: "MARS",
           coinMinimalDenom: "umars",
           coinDecimals: 6,
+          coinGeckoId: "pool:mars",
           coinImageUrl: "/tokens/mars.svg",
           isStakeCurrency: true,
           isFeeCurrency: true,
-          gasPriceStep: {
+          gasPriceStep: IS_TESTNET ? {
             low: 0,
             average: 0,
             high: 0.025,
+          } : {
+            low: 0,
+            average: 0,
+            high: 0,
           },
         },
       ],
       features: ["ibc-transfer", "ibc-go"],
-      explorerUrlToTx:
-        "https://testnet-explorer.marsprotocol.io/transactions/{txHash}",
+      explorerUrlToTx: IS_TESTNET
+        ? "https://testnet-explorer.marsprotocol.io/transactions/{txHash}"
+        : "https://explorer.marsprotocol.io/transactions/{txHash}",
     },
     {
-      rpc: "https://canto-rpc.polkachu.com",
-      rest: "https://canto-api.polkachu.com",
+      rpc: "https://rpc.canto.nodestake.top",
+      rest: "https://api.canto.nodestake.top",
       chainId: "canto_7700-1",
       chainName: "Canto",
       bip44: {
@@ -2591,15 +2605,15 @@ const chainInfos = (
           isStakeCurrency: true,
           isFeeCurrency: true,
           gasPriceStep: {
-            low: 125000000000,
-            average: 250000000000,
-            high: 375000000000,
+            low: 1000000000000,
+            average: 1500000000000,
+            high: 2000000000000,
           },
         },
       ],
       features: ["ibc-transfer", "ibc-go", "eth-address-gen", "eth-key-sign"],
       explorerUrlToTx:
-        "https://cosmos.explorer.canto.io/transactions/{txHash}",
+        "https://cosmos-explorers.neobase.one/canto/tx/{txHash}",
     },
     {
       rpc: "https://rpc-quicksilver.keplr.app",
@@ -2841,6 +2855,22 @@ chainInfos.push({
       //coinGeckoId: "fantom",
       coinGeckoId: "pool:wftm-wei",
       coinImageUrl: "/tokens/ftm.png",
+    },
+    {
+      coinDenom: "polygon.USDC",
+      coinMinimalDenom: "polygon-uusdc",
+      coinDecimals: 6,
+      coinGeckoId: "usd-coin",
+      coinImageUrl: "/tokens/usdc.svg",
+      pegMechanism: "collateralized",
+    },
+    {
+      coinDenom: "avalanche.USDC",
+      coinMinimalDenom: "avalanche-uusdc",
+      coinDecimals: 6,
+      coinGeckoId: "usd-coin",
+      coinImageUrl: "/tokens/usdc.svg",
+      pegMechanism: "collateralized",
     },
   ],
   feeCurrencies: [
